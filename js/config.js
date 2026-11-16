@@ -2,7 +2,7 @@
 // just change the text between the quotes.
 window.PORTFOLIO = {
   name: "MarloDev",
-  handle: "@MarloDev",
+  handle: "@jackson121265",
   role: "Roblox UI Designer",
   tagline: "I design clean, readable, and satisfying interfaces for Roblox experiences: event shops, HUDs, menu buttons, lobbies and everything in between.",
   available: true, // shows the "Open for commissions" badge
@@ -49,8 +49,8 @@ window.PORTFOLIO = {
   pricingNote: "USD and PayPal also accepted. Prices are a starting point; DM me for a quote.",
 
   contact: {
-    discord: "yourdiscord",
-    roblox: "https://www.roblox.com/users/0/profile",
+    discord: "mmarlodev",
+    roblox: "https://www.roblox.com/users/1933265410/profile",
     twitter: "",                  // e.g. "https://x.com/yourname"
     devforum: "",                 // e.g. "https://devforum.roblox.com/u/yourname"
     email: ""                     // e.g. "you@example.com"
