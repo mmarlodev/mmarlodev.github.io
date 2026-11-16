@@ -88,7 +88,7 @@
 
   // Pricing
   $("#pricing-cards").innerHTML = P.pricing.map((t) => `
-    <div class="card tier reveal${t.featured ? " featured" : ""}">
+    <div class="card tier reveal${t.featured ? " featured rim" : ""}">
       ${t.featured ? '<span class="ribbon">Most popular</span>' : ""}
       <h3>${esc(t.name)}</h3><div class="price">${esc(t.price)}</div>
       <p class="muted">${esc(t.desc)}</p>
@@ -109,6 +109,72 @@
     const b = e.target.closest("[data-copy]"); if (!b) return;
     navigator.clipboard?.writeText(b.dataset.copy).then(() => toast("Discord username copied!"), () => toast(b.dataset.copy));
   });
+
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Interactive dot grid
+  (() => {
+    const cv = $("#dot-grid"), ctx = cv.getContext("2d");
+    const GAP = 24, R = 1.1, RADIUS = 170, PUSH = 14;
+    let w, h, dpr, dots = [], mouse = { x: -9999, y: -9999 }, raf = 0;
+    const resize = () => {
+      dpr = Math.min(devicePixelRatio || 1, 2); w = innerWidth; h = innerHeight;
+      cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dots = [];
+      for (let y = GAP / 2; y < h; y += GAP) for (let x = GAP / 2; x < w; x += GAP) dots.push(x, y);
+      draw();
+    };
+    const draw = () => {
+      raf = 0; ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < dots.length; i += 2) {
+        let x = dots[i], y = dots[i + 1];
+        const dx = x - mouse.x, dy = y - mouse.y, d2 = dx * dx + dy * dy;
+        if (d2 < RADIUS * RADIUS) {
+          const d = Math.sqrt(d2) || 1, f = 1 - d / RADIUS;
+          x += (dx / d) * f * PUSH; y += (dy / d) * f * PUSH;
+          ctx.fillStyle = `rgba(${Math.round(0 + 124 * (1 - f))},${Math.round(162 - 70 * (1 - f))},255,${0.25 + f * 0.75})`;
+          ctx.beginPath(); ctx.arc(x, y, R + f * 1.6, 0, 6.283); ctx.fill();
+        } else {
+          ctx.fillStyle = "rgba(141,151,171,.16)"; ctx.fillRect(x - R, y - R, R * 2, R * 2);
+        }
+      }
+    };
+    addEventListener("resize", resize);
+    if (!reduceMotion) {
+      addEventListener("pointermove", (e) => {
+        mouse.x = e.clientX; mouse.y = e.clientY;
+        document.documentElement.style.setProperty("--mx", (e.clientX / innerWidth).toFixed(3));
+        if (!raf) raf = requestAnimationFrame(draw);
+      });
+      document.addEventListener("pointerleave", () => { mouse.x = mouse.y = -9999; if (!raf) raf = requestAnimationFrame(draw); });
+    }
+    resize();
+  })();
+
+  // Screenshot marquee: speed follows scroll velocity, direction follows scroll direction
+  (() => {
+    const track = $("#marquee"), shots = P.projects.filter((p) => p.image);
+    if (!shots.length) return track.parentElement.remove();
+    const set = shots.map((p) => `<div class="marquee-item"><img src="${esc(p.image)}" alt="" loading="lazy" /><span>${esc(p.title)}</span></div>`).join("");
+    track.innerHTML = set.repeat(4);
+    if (reduceMotion) return;
+    let x = 0, dir = -1, boost = 0, lastY = scrollY, last = performance.now();
+    addEventListener("scroll", () => {
+      const dy = scrollY - lastY; lastY = scrollY;
+      if (dy) dir = dy > 0 ? -1 : 1;
+      boost = Math.min(boost + Math.abs(dy) * 0.6, 900);
+    }, { passive: true });
+    const tick = (now) => {
+      const dt = Math.min(now - last, 50) / 1000; last = now;
+      boost *= 0.92;
+      x += dir * (40 + boost) * dt;
+      const half = track.scrollWidth / 2;
+      if (half) { if (x <= -half) x += half; if (x > 0) x -= half; }
+      track.style.transform = `translate3d(${x}px,0,0)`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  })();
 
   // Scroll reveal
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
