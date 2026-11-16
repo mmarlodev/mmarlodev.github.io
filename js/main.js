@@ -42,11 +42,15 @@
       <div class="w-days">${range(7).map((i) => `<div class="w-day${i < 3 ? " got" : i === 3 ? " now" : ""}${i === 6 ? " big" : ""}"><small>Day ${i + 1}</small><div class="w-icon" style="--c:${rar[Math.min(4, Math.floor(i / 1.5))]}"></div></div>`).join("")}</div>`
   };
   const renderMock = (type) => `<div class="mock mock-${type}">${(MOCKS[type] || MOCKS.shop)()}</div>`;
-  document.querySelectorAll(".hero-art .mock").forEach((el) => {
+  const heroImgs = P.projects.filter((p) => p.image).slice(0, 3);
+  document.querySelectorAll(".hero-art .mock").forEach((el, i) => {
+    if (heroImgs.length === 3) { el.outerHTML = `<img class="hero-shot" src="${esc(heroImgs[i].image)}" alt="${esc(heroImgs[i].title)}" />`; return; }
     const type = [...el.classList].find((c) => c.startsWith("mock-")).slice(5);
     el.innerHTML = MOCKS[type]();
   });
-  const preview = (p) => p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" />` : renderMock(p.mock);
+  const preview = (p) => p.image
+    ? `<div class="shot" style="--img:url('${esc(p.image)}')"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" /></div>`
+    : renderMock(p.mock);
 
   // Projects + filters
   const cats = ["All", ...new Set(P.projects.map((p) => p.category))];

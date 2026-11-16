@@ -65,9 +65,9 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1.2rem; }
 
 .hero-art { position: relative; height: 520px; }
 .float { position: absolute; width: 300px; animation: bob 6s ease-in-out infinite; filter: drop-shadow(0 30px 40px rgba(0,0,0,.5)); }
-.f1 { top: 0; left: 8%; transform: rotate(-4deg); }
-.f2 { top: 38%; right: 0; width: 280px; animation-delay: -2s; }
-.f3 { bottom: 0; left: 0; width: 320px; animation-delay: -4s; }
+.f1 { top: 0; left: 0; width: 380px; transform: rotate(-3deg); }
+.f2 { top: 40%; right: 0; width: 320px; animation-delay: -2s; }
+.f3 { bottom: 0; left: 6%; width: 220px; animation-delay: -4s; }
 @keyframes bob { 50% { translate: 0 -14px; } }
 
 /* Sections */
@@ -81,12 +81,17 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1.2rem; }
 .filters button.on { background: var(--blue); color: #fff; border-color: var(--blue); }
 
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 1.5rem; }
 .project { overflow: hidden; cursor: pointer; transition: transform .25s, border-color .25s, box-shadow .25s; outline: none; }
 .project:hover, .project:focus-visible { transform: translateY(-6px); border-color: var(--blue); box-shadow: 0 20px 40px rgba(0,162,255,.15); }
 .preview { aspect-ratio: 4/3; display: grid; place-items: center; padding: 1.2rem; overflow: hidden;
   background: radial-gradient(circle at 30% 20%, #2a3a5c, #121826 70%); }
-.preview img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.preview:has(.shot) { padding: 0; }
+.shot { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.shot::before { content: ""; position: absolute; inset: -20px; background: var(--img) center / cover; filter: blur(18px) brightness(.55); }
+.shot img { position: absolute; inset: 0; margin: auto; max-width: 92%; max-height: 88%; object-fit: contain; border-radius: 10px; box-shadow: 0 12px 30px rgba(0,0,0,.45); transition: transform .3s; }
+.project:hover .shot img { transform: scale(1.04); }
+.hero-shot { display: block; width: 100%; border-radius: 14px; border: 3px solid #0e1220; }
 .preview .mock { width: 76%; transition: transform .3s; }
 .project:hover .preview .mock { transform: scale(1.04); }
 .project-body { padding: 1.2rem 1.4rem 1.5rem; }
@@ -140,7 +145,8 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1.2rem; }
 @keyframes pop { from { transform: scale(.92); opacity: 0; } }
 .modal.preview { aspect-ratio: 4/3; border-radius: 12px; display: grid; place-items: center; background: radial-gradient(circle at 30% 20%, #2a3a5c, #121826 70%); overflow: hidden; }
 .modal-preview .mock { width: 70%; }
-.modal-preview img { width: 100%; height: 100%; object-fit: contain; }
+.modal-preview:has(.shot) { aspect-ratio: auto; height: min(60vh, 520px); }
+.modal-preview .shot img { max-width: 96%; max-height: 94%; }
 .modal-close { position: absolute; top: .8rem; right: .8rem; z-index: 2; width: 36px; height: 36px; border-radius: 10px; border: 0; cursor: pointer;
   background: #e5484d; color: #fff; font-size: 1.4rem; line-height: 1; box-shadow: 0 3px 0 #9b1c20; }
 .modal-box .btn { justify-self: start; }
@@ -225,8 +231,10 @@ h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1.2rem; }
 @media (max-width: 600px) {
   .nav nav a:not(.btn) { display: none; }
   .hero-art { height: 340px; }
-  .float { width: 220px; } .f2 { width: 200px; } .f3 { width: 230px; }
+  .float { width: 240px; } .f2 { width: 210px; } .f3 { width: 150px; }
   .process { grid-template-columns: 1fr; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .stats strong { font-size: 1.3rem; } .stats span { font-size: .8rem; }
   .grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } }

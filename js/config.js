@@ -1,24 +1,25 @@
 // Edit this file to personalize your portfolio. No coding knowledge needed:
 // just change the text between the quotes.
 window.PORTFOLIO = {
-  name: "Your Name",
-  handle: "@YourRobloxUser",
+  name: "MarloDev",
+  handle: "@MarloDev",
   role: "Roblox UI Designer",
-  tagline: "I design clean, readable, and satisfying interfaces for Roblox experiences: shops, inventories, HUDs, menus and everything in between.",
+  tagline: "I design clean, readable, and satisfying interfaces for Roblox experiences: event shops, HUDs, menu buttons, lobbies and everything in between.",
   available: true, // shows the "Open for commissions" badge
 
+  // Optional. Add numbers you can back up, e.g. { value: "50+", label: "UIs delivered" }
   stats: [
-    { value: "50+", label: "UIs delivered" },
-    { value: "20M+", label: "Visits on games I've worked on" },
-    { value: "3 yrs", label: "In Roblox Studio" }
+    { value: "HUDs", label: "Buttons, currency, timers" },
+    { value: "Shops", label: "Event & gamepass shops" },
+    { value: "Menus", label: "Lobbies & matchmaking" }
   ],
 
-  about: "I'm a UI/UX designer focused on Roblox. I design in Figma or Photopea, then build everything natively in Roblox Studio with proper scaling, UIAspectRatioConstraints, and smooth TweenService animations, so it looks right on PC, mobile, tablet and console.",
+  about: "I'm MarloDev, a UI designer focused on Roblox. I make bold, colorful interfaces that are easy to read at a glance: chunky buttons, punchy icons and themed shops that fit your game's style. Everything is built in Roblox Studio and scaled so it looks right on PC, mobile, tablet and console.",
 
   skills: [
     "Roblox Studio", "Figma", "Photopea / Photoshop", "UI Scaling (Scale vs Offset)",
     "UIGridLayout & UIListLayout", "TweenService Animations", "Mobile & Console Support",
-    "Icon Design", "Luau UI Scripting", "Plugin: AutoScale Lite"
+    "Icon Design", "Event / Seasonal Themes"
   ],
 
   // Project cards. "mock" picks a built-in CSS preview:
@@ -26,12 +27,18 @@ window.PORTFOLIO = {
   // To use your own screenshot instead, put the file in assets/projects/
   // and set image: "assets/projects/your-file.png"
   projects: [
-    { title: "Simulator Shop",       category: "Shop",      mock: "shop",      image: "", description: "Gamepass and currency shop with animated buttons and a featured-item banner.", tags: ["Figma", "Studio", "Tweens"], link: "" },
-    { title: "RPG Inventory",        category: "Inventory", mock: "inventory", image: "", description: "Grid inventory with rarity colors, equip states and item tooltips.",            tags: ["UIGridLayout", "Rarity system"], link: "" },
-    { title: "Combat HUD",           category: "HUD",       mock: "hud",       image: "", description: "Health, stamina and ability cooldowns, readable on small mobile screens.",      tags: ["Mobile", "Cooldowns"], link: "" },
-    { title: "Main Menu",            category: "Menu",      mock: "menu",      image: "", description: "Title screen with play, settings and a blurred animated backdrop.",              tags: ["Menu", "Blur"], link: "" },
-    { title: "Settings Panel",       category: "Menu",      mock: "settings",  image: "", description: "Toggles, sliders and keybinds that work on PC, mobile and console.",              tags: ["Console", "Accessibility"], link: "" },
-    { title: "Daily Rewards",        category: "Shop",      mock: "rewards",   image: "", description: "7-day streak reward calendar to keep players coming back.",                    tags: ["Retention", "Animation"], link: "" }
+    { title: "Halloween Event Shop", category: "Shop", image: "assets/projects/halloween-shop.png", mock: "shop",
+      description: "Limited-time Halloween shop with a seed banner, live countdown, rarity odds from 35% down to an ultra-rare 0.005%, and Candy currency packs.",
+      tags: ["Event", "Shop", "Rarity odds", "Countdown"], link: "" },
+    { title: "Simulator HUD", category: "HUD", image: "assets/projects/simulator-hud.png", mock: "hud",
+      description: "Full in-game HUD: side menu buttons, Slow Mode toggle, strength and cash counters, friend boost, and event spawn timers.",
+      tags: ["HUD", "Currency", "Timers", "Simulator"], link: "" },
+    { title: "Side Menu Buttons", category: "HUD", image: "assets/projects/side-menu.png", mock: "menu",
+      description: "Chunky, color-coded menu buttons with custom icons (Shop, Index, Event) and a matching toggle.",
+      tags: ["Buttons", "Icons", "Toggle"], link: "" },
+    { title: "Matchmaking Lobby", category: "Menu", image: "assets/projects/matchmaking.png", mock: "menu",
+      description: "Clean matchmaking screen with 1v1, 2v2 and 3v3 queue cards, Most Popular tags and a party bar.",
+      tags: ["Lobby", "PvP", "Party system"], link: "" }
   ],
 
   pricing: [
