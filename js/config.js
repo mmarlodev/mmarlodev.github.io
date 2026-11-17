@@ -48,7 +48,7 @@ window.PORTFOLIO = {
 
   pricing: [
     { name: "Single Frame",  price: "1,500 R$",  desc: "One screen, e.g. a shop or a settings menu.",  features: ["Design + Studio build", "Scales to all devices", "2 revisions"] },
-    { name: "Full Game UI",  price: "10,000 R$", desc: "A full UI kit for your experience.",           features: ["Up to 8 screens", "Tween animations", "Custom icons", "Unlimited revisions"], featured: true },
+    { name: "Full Game UI",  price: "10,000 R$", desc: "A full UI kit for your experience.",           features: ["Up to 8 screens", "Tween animations", "Custom icons", "3 free revisions"], featured: true },
     { name: "Icons Pack",    price: "500 R$",    desc: "Matching icon set for your game.",             features: ["10 icons", "Transparent PNG", "Source files"] }
   ],
   pricingNote: "USD and PayPal also accepted. Prices are a starting point; DM me for a quote.",
