@@ -7,6 +7,13 @@ window.PORTFOLIO = {
   tagline: "I design clean, readable, and satisfying interfaces for Roblox experiences: event shops, HUDs, menu buttons, lobbies and everything in between.",
   available: true, // shows the "Open for commissions" badge
 
+  // Your Roblox avatar render (transparent PNG) and headshot
+  avatar: "assets/avatar.png",
+  headshot: "assets/headshot.png",
+
+  // Big intro sentence. {headshot} drops your headshot in as a little pill.
+  intro: "I'm MarloDev {headshot} a Roblox UI designer. I make bold, colorful interfaces that are easy to read at a glance, built in Roblox Studio and scaled so they look right on every device.",
+
   // Optional. Add numbers you can back up, e.g. { value: "50+", label: "UIs delivered" }
   stats: [
     { value: "HUDs", label: "Buttons, currency, timers" },
@@ -22,21 +29,19 @@ window.PORTFOLIO = {
     "Icon Design", "Event / Seasonal Themes"
   ],
 
-  // Project cards. "mock" picks a built-in CSS preview:
-  //   shop | inventory | hud | menu | settings | rewards
-  // To use your own screenshot instead, put the file in assets/projects/
-  // and set image: "assets/projects/your-file.png"
+  // Project cards. Put screenshots in assets/projects/ and set image: "assets/projects/your-file.png".
+  // link is optional (e.g. the game's Roblox page).
   projects: [
-    { title: "Halloween Event Shop", category: "Shop", image: "assets/projects/halloween-shop.png", mock: "shop",
+    { title: "Halloween Event Shop", category: "Shop", image: "assets/projects/halloween-shop.png",
       description: "Limited-time Halloween shop with a seed banner, live countdown, rarity odds from 35% down to an ultra-rare 0.005%, and Candy currency packs.",
       tags: ["Event", "Shop", "Rarity odds", "Countdown"], link: "" },
-    { title: "Simulator HUD", category: "HUD", image: "assets/projects/simulator-hud.png", mock: "hud",
+    { title: "Simulator HUD", category: "HUD", image: "assets/projects/simulator-hud.png",
       description: "Full in-game HUD: side menu buttons, Slow Mode toggle, strength and cash counters, friend boost, and event spawn timers.",
       tags: ["HUD", "Currency", "Timers", "Simulator"], link: "" },
-    { title: "Side Menu Buttons", category: "HUD", image: "assets/projects/side-menu.png", mock: "menu",
+    { title: "Side Menu Buttons", category: "HUD", image: "assets/projects/side-menu.png",
       description: "Chunky, color-coded menu buttons with custom icons (Shop, Index, Event) and a matching toggle.",
       tags: ["Buttons", "Icons", "Toggle"], link: "" },
-    { title: "Matchmaking Lobby", category: "Menu", image: "assets/projects/matchmaking.png", mock: "menu",
+    { title: "Matchmaking Lobby", category: "Menu", image: "assets/projects/matchmaking.png",
       description: "Clean matchmaking screen with 1v1, 2v2 and 3v3 queue cards, Most Popular tags and a party bar.",
       tags: ["Lobby", "PvP", "Party system"], link: "" }
   ],
